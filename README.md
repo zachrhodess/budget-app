@@ -20,13 +20,8 @@ Rhodes Financial is a private, local-first household finance app for macOS. It r
 
 ## macOS download security
 
-macOS may quarantine `.command` files downloaded from the internet. First try right-clicking `start.command` and choosing **Open**. If macOS still blocks the downloaded Rhodes Financial folder, you can remove the quarantine attribute from that folder in Terminal:
+macOS may quarantine `.command` files downloaded from the internet. First try right-clicking `start.command` and choosing **Open**. If macOS still blocks the downloaded Rhodes Financial folder, you can run the file by opening Settings --> Privacy & Security --> Scroll down to Security section and click 'Open Anyway'
 
-```bash
-xattr -dr com.apple.quarantine "/path/to/Rhodes Financial"
-```
-
-Only use that command on the Rhodes Financial folder you intentionally downloaded from this repository.
 
 ## Where your financial data lives
 
