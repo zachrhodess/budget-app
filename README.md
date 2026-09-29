@@ -17,6 +17,17 @@ Rhodes Financial is a private, local-first household finance app for macOS. It r
 
 `start.command` automatically creates the local data folders it needs.
 
+
+## macOS download security
+
+macOS may quarantine `.command` files downloaded from the internet. First try right-clicking `start.command` and choosing **Open**. If macOS still blocks the downloaded Rhodes Financial folder, you can remove the quarantine attribute from that folder in Terminal:
+
+```bash
+xattr -dr com.apple.quarantine "/path/to/Rhodes Financial"
+```
+
+Only use that command on the Rhodes Financial folder you intentionally downloaded from this repository.
+
 ## Where your financial data lives
 
 Rhodes Financial stores persistent data in:
@@ -58,8 +69,10 @@ The updater creates a database safety copy, rebuilds the app, and reconnects to 
 
 - **Dashboard** — household totals and shortcuts
 - **Import** — CSV/PDF preview and import
-- **Transactions** — editable ledger and filters
 - **Expenses** — month-by-month spending with category filters
+- **Income** — month-by-month income with source filters
+
+The full **Transactions** ledger and advanced filters are available under **More**.
 
 Additional pages are available under **More**.
 
@@ -67,10 +80,14 @@ Additional pages are available under **More**.
 
 Rhodes Financial accepts:
 
-- CSV
+- CSV exports from most banks and credit cards
 - Searchable PDF statements
 
-The app previews transactions before importing and asks for the target account if it cannot confidently identify one.
+CSV imports are bank-agnostic: Rhodes Financial looks for common date, description, amount, debit, credit, balance, and type columns. If a CSV uses unfamiliar headings, the import screen lets you map the columns manually and remember that layout locally for future statements.
+
+PDF imports use flexible text-pattern detection in addition to known high-confidence statement layouts. Searchable/text PDFs work best. Image-only scanned PDFs still require OCR and are not imported automatically.
+
+The app always previews detected transactions before importing and asks for the target account if it cannot confidently identify one. The `imports/` folder is temporary staging used by the app; copying a statement there manually does not trigger an import.
 
 ## Excel exports
 
